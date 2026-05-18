@@ -1,0 +1,1391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kimia's Kravings</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- COLOR SYSTEM --- */
+      :root {
+        --color-cream: #fdfaf4;
+        --color-cream-translucent: rgba(253, 250, 244, 0.85);
+        --color-alabaster: #f4f0e6;
+        --color-charcoal: #2c2a28;
+        --color-gold: #b89b5e;
+        --color-soft-gold: #d9cfbf;
+        --color-muted-ink: #5c5954;
+        --color-taupe: #8b857d;
+        --color-soft-taupe: #a39e96;
+
+        /* Pillar Colors */
+        --food-bg: #e9c9b7;
+        --food-soft: #f7ece4;
+        --food-ink: #8a4a30;
+        --travel-bg: #b9c8d3;
+        --travel-soft: #eaf0f4;
+        --travel-ink: #3d5a73;
+        --life-bg: #c4cdb6;
+        --life-soft: #eef1e8;
+        --life-ink: #5a6b3f;
+
+        /* Typography */
+        --font-sans:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        --font-serif: "Playfair Display", Georgia, serif;
+      }
+
+      /* --- RESET & BASE --- */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: var(--color-cream);
+        color: var(--color-charcoal);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s ease;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      em {
+        font-family: var(--font-serif);
+        font-style: italic;
+      }
+
+      ::selection {
+        background-color: var(--color-gold);
+        color: var(--color-cream);
+      }
+
+      /* --- ANIMATIONS --- */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .fade-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .delay-100 {
+        transition-delay: 100ms;
+      }
+      .delay-200 {
+        transition-delay: 200ms;
+      }
+
+      /* --- LAYOUT UTILITIES --- */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .overflow-hidden {
+        overflow: hidden;
+      }
+      .flex {
+        display: flex;
+      }
+      .flex-col {
+        flex-direction: column;
+      }
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .items-end {
+        align-items: flex-end;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .gap-2 {
+        gap: 0.5rem;
+      }
+      .gap-3 {
+        gap: 0.75rem;
+      }
+      .gap-4 {
+        gap: 1rem;
+      }
+      .gap-6 {
+        gap: 1.5rem;
+      }
+      .gap-8 {
+        gap: 2rem;
+      }
+      .grid {
+        display: grid;
+      }
+      .grid-cols-12 {
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .col-12 {
+        grid-column: 1 / -1;
+      }
+
+      .w-full {
+        width: 100%;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .object-cover {
+        object-fit: cover;
+      }
+      .rounded-sm {
+        border-radius: 4px;
+      }
+      .rounded-full {
+        border-radius: 9999px;
+      }
+
+      /* --- TYPOGRAPHY --- */
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--color-muted-ink);
+      }
+      .text-sm {
+        font-size: 13px;
+        letter-spacing: 0.05em;
+      }
+      .text-muted {
+        color: var(--color-muted-ink);
+      }
+      .text-taupe {
+        color: var(--color-taupe);
+      }
+      .tracking-tight {
+        letter-spacing: -0.02em;
+      }
+      .leading-none {
+        line-height: 1;
+      }
+      .leading-relaxed {
+        line-height: 1.6;
+      }
+
+      /* --- COMPONENTS --- */
+      .nav-link {
+        position: relative;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: var(--color-gold);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .btn-primary {
+        background-color: var(--color-charcoal);
+        color: var(--color-cream);
+        padding: 0.875rem 1.75rem;
+        border-radius: 9999px;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-primary:hover {
+        background-color: var(--color-gold);
+        color: var(--color-cream);
+      }
+
+      .btn-outline {
+        border: 1px solid var(--color-soft-gold);
+        color: var(--color-charcoal);
+        padding: 0.875rem 1.75rem;
+        border-radius: 9999px;
+        font-size: 13px;
+        transition: all 0.3s ease;
+      }
+      .btn-outline:hover {
+        background-color: var(--color-soft-gold);
+      }
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .icon-sm {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* --- HEADER / NAV --- */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: var(--color-cream-translucent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+      }
+      .header.scrolled {
+        border-bottom: 1px solid var(--color-soft-gold);
+      }
+      .nav-container {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--color-charcoal);
+      }
+      .mobile-menu-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .mobile-menu-btn span {
+        display: block;
+        width: 24px;
+        height: 1px;
+        background-color: var(--color-charcoal);
+        transition: 0.3s;
+      }
+
+      /* --- SECTIONS --- */
+      .hero {
+        padding: 4rem 0 7rem;
+      }
+      .hero-bg-svg {
+        opacity: 0.15;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .hero-bg-svg path {
+        stroke: var(--color-soft-gold);
+      }
+      .hero-title {
+        font-size: clamp(40px, 6vw, 90px);
+        line-height: 0.95;
+        margin-bottom: 2.5rem;
+        font-weight: 400;
+      }
+      .hero-image-wrapper {
+        aspect-ratio: 4/5;
+        box-shadow: 0 30px 60px -20px rgba(44, 42, 40, 0.18);
+      }
+      .hero-badge {
+        bottom: -2rem;
+        left: -2rem;
+        background: var(--color-cream);
+        border: 1px solid var(--color-soft-gold);
+        padding: 1rem 1.25rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+      .stats-grid {
+        margin-top: 6rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--color-soft-gold);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .about-section {
+        padding: 6rem 0;
+      }
+      .about-image {
+        aspect-ratio: 4/5;
+      }
+      .about-quote {
+        font-size: clamp(34px, 4vw, 56px);
+        margin: 1rem 0 2rem;
+        font-weight: 400;
+      }
+
+      .featured-section {
+        background-color: var(--color-alabaster);
+        padding: 7rem 0;
+      }
+      .featured-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .card {
+        background-color: var(--color-cream);
+        display: block;
+        transition: transform 0.3s ease;
+      }
+      .card-img-container {
+        aspect-ratio: 4/5;
+        position: relative;
+        padding: 1.5rem;
+      }
+      .card-img-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .card img {
+        transition: transform 0.7s ease;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .card:hover img {
+        transform: scale(105%);
+      }
+      .card-label {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.25rem;
+        padding: 0.375rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        z-index: 10;
+        font-weight: 500;
+      }
+      .card-content {
+        padding: 1.75rem;
+      }
+      .card-title {
+        font-size: 24px;
+        line-height: 1.2;
+        margin-top: 1rem;
+        font-weight: 400;
+      }
+
+      .featured-in {
+        border-top: 1px solid var(--color-soft-gold);
+        border-bottom: 1px solid var(--color-soft-gold);
+        background-color: var(--color-cream);
+        padding: 3rem 0;
+        text-align: center;
+      }
+      .featured-logos {
+        color: var(--color-soft-taupe);
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.1rem;
+      }
+
+      .consulting-section {
+        padding: 7rem 0;
+      }
+      .consulting-box {
+        background-color: var(--color-charcoal);
+        color: var(--color-cream);
+        border-radius: 4px;
+        padding: 3rem;
+      }
+      .consulting-box .text-muted {
+        color: var(--color-soft-gold);
+      }
+      .consulting-box em {
+        color: var(--color-gold);
+        font-weight: 400;
+      }
+      .btn-light {
+        background-color: var(--color-cream);
+        color: var(--color-charcoal);
+        padding: 1rem 1.75rem;
+        border-radius: 9999px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+      }
+      .btn-light:hover {
+        background-color: var(--color-gold);
+        color: var(--color-cream);
+      }
+      .btn-dark-outline {
+        border: 1px solid var(--color-muted-ink);
+        color: var(--color-cream);
+        padding: 1rem 1.75rem;
+        border-radius: 9999px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.3s;
+      }
+      .btn-dark-outline:hover {
+        background-color: var(--color-muted-ink);
+      }
+
+      .ig-section {
+        background-color: var(--color-alabaster);
+        padding: 6rem 0;
+      }
+      .ig-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+      .ig-item {
+        aspect-ratio: 1/1;
+        overflow: hidden;
+        display: block;
+      }
+      .ig-item img {
+        transition: transform 0.7s ease;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ig-item:hover img {
+        transform: scale(105%);
+      }
+
+      .newsletter-section {
+        padding: 7rem 0;
+      }
+      .newsletter-box {
+        background-color: var(--color-alabaster);
+        border-radius: 4px;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .newsletter-box svg path {
+        stroke: var(--color-soft-gold);
+      }
+      .newsletter-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        background: var(--color-cream);
+        border: 1px solid var(--color-soft-gold);
+        border-radius: 9999px;
+        padding: 0.375rem;
+      }
+      .newsletter-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 0.75rem 1.25rem;
+        color: var(--color-charcoal);
+        font-family: var(--font-sans);
+      }
+      .newsletter-input::placeholder {
+        color: var(--color-taupe);
+      }
+
+      /* --- FOOTER --- */
+      .footer {
+        background-color: var(--color-charcoal);
+        color: var(--color-cream);
+        padding: 5rem 0 2rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+      .footer-logo {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 28px;
+        margin-bottom: 1rem;
+        color: var(--color-cream);
+      }
+      .footer-links-group h4 {
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--color-soft-gold);
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .footer-links a {
+        color: var(--color-soft-taupe);
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+      .footer-links a:hover {
+        color: var(--color-gold);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--color-muted-ink);
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: var(--color-soft-taupe);
+      }
+
+      /* Media Queries */
+      @media (min-width: 768px) {
+        .desktop-nav {
+          display: flex;
+          gap: 2.5rem;
+        }
+        .mobile-menu-btn {
+          display: none;
+        }
+
+        .col-md-3 {
+          grid-column: span 3;
+        }
+        .col-md-4 {
+          grid-column: span 4;
+        }
+        .col-md-5 {
+          grid-column: span 5;
+        }
+        .col-md-7 {
+          grid-column: span 7;
+        }
+        .col-md-7.col-md-start-6 {
+          grid-column: 6 / span 7;
+        }
+        .col-md-4.col-md-start-9 {
+          grid-column: 9 / span 4;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .featured-cards {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .ig-grid {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .consulting-box {
+          padding: 5rem;
+        }
+        .newsletter-box {
+          padding: 5rem;
+        }
+        .newsletter-input-group {
+          flex-direction: row;
+        }
+
+        .footer-grid {
+          grid-template-columns: 2fr 1fr 1fr;
+        }
+        .footer-bottom {
+          flex-direction: row;
+        }
+      }
+      @media (min-width: 1024px) {
+        .col-lg-5 {
+          grid-column: span 5;
+        }
+        .col-lg-7 {
+          grid-column: span 7;
+        }
+      }
+      @media (max-width: 767px) {
+        .desktop-nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header" id="header">
+      <div class="container nav-container">
+        <a href="#" class="logo">Kimia's Kravings</a>
+
+        <nav class="desktop-nav items-center">
+          <a href="#recipes" class="nav-link">Home</a>
+          <a href="#guides" class="nav-link">About kimia </a>
+          <a href="#lifestyle" class="nav-link">Blog</a>
+          <a href="#about" class="nav-link">Consulting</a>
+          <a href="#about" class="nav-link">Contact</a>
+          <a
+            href="#contact"
+            class="btn-primary"
+            style="padding: 0.6rem 1.2rem; font-size: 11px"
+            >Work With Kimia</a
+          >
+        </nav>
+
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero relative overflow-hidden">
+      <div class="container relative">
+        <svg
+          viewBox="0 0 1200 400"
+          class="absolute hero-bg-svg w-full h-full"
+          style="top: 0; left: 0"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,260 C200,180 380,320 600,220 C820,120 980,300 1200,180"
+            stroke-width="1"
+            fill="none"
+          />
+          <path
+            d="M0,300 C220,240 420,360 620,260 C840,160 1000,340 1200,240"
+            stroke-width="1"
+            fill="none"
+          />
+        </svg>
+
+        <div class="grid grid-cols-12 gap-8 items-end relative">
+          <div class="col-12 col-lg-7 fade-up">
+            <div class="flex items-center gap-3" style="margin-bottom: 2.5rem">
+              <span class="eyebrow">Issue N°014 — Spring 2026</span>
+              <span
+                style="
+                  height: 1px;
+                  width: 3rem;
+                  background-color: var(--color-soft-gold);
+                "
+              ></span>
+            </div>
+            <h1 class="hero-title tracking-tight">
+              Your ultimate <br />
+              go-to <em class="text-taupe">Guide for</em><br />
+              where to Eat,<br />
+              Drink & <em class="text-taupe">be Merry</em>
+            </h1>
+            <p
+              class="text-muted leading-relaxed"
+              style="max-width: 28rem; margin-top: 2.5rem"
+            >
+              A San Francisco-based lifestyle brand exploring the intersection
+              of food, travel, and modern living. Join 76K+ followers on a
+              journey through restaurant reviews, travel diaries, and editorial
+              content.
+            </p>
+            <div class="flex items-center gap-4" style="margin-top: 2.5rem">
+              <a href="#blog" class="btn-primary">
+                Work with Kimia
+                <svg class="icon"><path d="M7 17L17 7M7 7h10v10" /></svg>
+              </a>
+              <a
+                href="#about"
+                class="text-sm nav-link"
+                style="padding: 0.875rem 0"
+              >
+                Meet Kimia
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-5 relative fade-up delay-100">
+            <div class="hero-image-wrapper overflow-hidden rounded-sm relative">
+              <img
+                src="https://images.unsplash.com/photo-1664994464799-c8f643d712f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                alt="Editorial plate"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="absolute hero-badge rounded-sm">
+              <div class="eyebrow" style="font-size: 10px">Featured On</div>
+              <div
+                style="margin-top: 0.25rem; font-size: 14px; font-weight: 500"
+              >
+                Forbes , Thribes and Many More
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid fade-up delay-200">
+          <div>
+            <div
+              class="tracking-tight leading-none"
+              style="font-size: 40px; font-weight: 300"
+            >
+              76K+
+            </div>
+            <div class="eyebrow" style="margin-top: 0.5rem; font-size: 12px">
+              Followers
+            </div>
+          </div>
+          <div>
+            <div
+              class="tracking-tight leading-none"
+              style="font-size: 40px; font-weight: 300"
+            >
+              38
+            </div>
+            <div class="eyebrow" style="margin-top: 0.5rem; font-size: 12px">
+              Cities documented
+            </div>
+          </div>
+          <div>
+            <div
+              class="tracking-tight leading-none"
+              style="font-size: 40px; font-weight: 300"
+            >
+              1.2M
+            </div>
+            <div class="eyebrow" style="margin-top: 0.5rem; font-size: 12px">
+              Readers monthly
+            </div>
+          </div>
+          <div>
+            <div
+              class="tracking-tight leading-none"
+              style="font-size: 40px; font-weight: 300"
+            >
+              12
+            </div>
+            <div class="eyebrow" style="margin-top: 0.5rem; font-size: 12px">
+              Brand partners
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="container grid grid-cols-12 gap-8 items-center">
+        <div class="col-12 col-md-4 fade-up">
+          <div class="about-image overflow-hidden rounded-sm">
+            <img
+              src="5ffaaa20-c9ed-45fb-b1e5-eb05d34aa6fd.jpeg"
+              alt="Kimia"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-7 col-md-start-6 fade-up delay-100">
+          <div class="eyebrow" style="margin-bottom: 1rem">About Kimia</div>
+          <h2 class="about-quote tracking-tight leading-none">
+            "I believe in the art of slow living—in savoring every moment,
+            <em class="text-taupe">every experience</em>"
+          </h2>
+          <p
+            class="text-muted leading-relaxed"
+            style="max-width: 32rem; margin-top: 2rem"
+          >
+            a San Francisco-based food, travel, and lifestyle blogger turned
+            brand consultant. Whether I'm hunting down the best hidden ramen
+            spot or helping brands show up authentically online, I bring the
+            same energy: genuine, curious, and always hungry for more.
+          </p>
+          <a
+            href="#about-full"
+            class="text-sm flex items-center gap-2 nav-link"
+            style="
+              margin-top: 2rem;
+              display: inline-flex;
+              color: var(--color-gold);
+            "
+          >
+            Read her story
+            <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-section" id="blog">
+      <div class="container">
+        <div
+          class="flex items-end justify-between fade-up"
+          style="margin-bottom: 4rem"
+        >
+          <div>
+            <div class="eyebrow" style="margin-bottom: 1rem">
+              Featured Posts
+            </div>
+            <h2
+              class="tracking-tight leading-none hero-title"
+              style="
+                font-size: clamp(36px, 4.5vw, 64px);
+                max-width: 42rem;
+                margin-bottom: 0;
+              "
+            >
+              Latest from <br />
+              the BLOG
+            </h2>
+          </div>
+          <a
+            href="#all-posts"
+            class="text-sm hidden md-flex items-center gap-2 nav-link"
+          >
+            View all entries
+            <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+          </a>
+        </div>
+
+        <div class="featured-cards">
+          <a href="#post" class="card rounded-sm fade-up">
+            <div
+              class="card-img-container"
+              style="background: var(--food-soft)"
+            >
+              <div class="card-img-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1672477179695-7276b0602fa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                  alt="Slow Saturdays"
+                />
+              </div>
+              <div
+                class="card-label"
+                style="background: var(--food-bg); color: var(--food-ink)"
+              >
+                01 — Wellness
+              </div>
+            </div>
+            <div class="card-content">
+              <div
+                class="flex items-center gap-2 eyebrow"
+                style="font-size: 11px"
+              >
+                <svg class="icon-sm">
+                  <path
+                    d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"
+                  />
+                  <line x1="6" y1="17" x2="18" y2="17" />
+                </svg>
+                <span>Food</span>
+                <span
+                  style="
+                    height: 1px;
+                    width: 1.5rem;
+                    background-color: var(--color-soft-gold);
+                    margin: 0 0.25rem;
+                  "
+                ></span>
+                <span>8 min read</span>
+              </div>
+              <h3 class="card-title tracking-tight">
+                Slow Saturdays: a five-ingredient ricotta
+              </h3>
+              <span
+                class="text-sm flex items-center gap-2 nav-link"
+                style="
+                  margin-top: 1.5rem;
+                  color: var(--food-ink);
+                  display: inline-flex;
+                "
+              >
+                Read entry
+                <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#post" class="card rounded-sm fade-up delay-100">
+            <div
+              class="card-img-container"
+              style="background: var(--travel-soft)"
+            >
+              <div class="card-img-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1633804324856-6ede90ab7549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                  alt="Three days in Lisbon"
+                />
+              </div>
+              <div
+                class="card-label"
+                style="background: var(--travel-bg); color: var(--travel-ink)"
+              >
+                02 — Lifestyle
+              </div>
+            </div>
+            <div class="card-content">
+              <div
+                class="flex items-center gap-2 eyebrow"
+                style="font-size: 11px"
+              >
+                <svg class="icon-sm">
+                  <path
+                    d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L2.5 8l6.4 3.2L5 15H2l-1 1 3 3 3 3 1-1v-3l3.8-3.9L16 21.5l1.2-1.2c.4-.2.7-.6.6-1.1Z"
+                  />
+                </svg>
+                <span>Travel</span>
+                <span
+                  style="
+                    height: 1px;
+                    width: 1.5rem;
+                    background-color: var(--color-soft-gold);
+                    margin: 0 0.25rem;
+                  "
+                ></span>
+                <span>12 min read</span>
+              </div>
+              <h3 class="card-title tracking-tight">
+                Three days in Lisbon, no itinerary
+              </h3>
+              <span
+                class="text-sm flex items-center gap-2 nav-link"
+                style="
+                  margin-top: 1.5rem;
+                  color: var(--travel-ink);
+                  display: inline-flex;
+                "
+              >
+                Read entry
+                <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#post" class="card rounded-sm fade-up delay-200">
+            <div
+              class="card-img-container"
+              style="background: var(--life-soft)"
+            >
+              <div class="card-img-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1510172951991-856a654063f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                  alt="The morning protocol"
+                />
+              </div>
+              <div
+                class="card-label"
+                style="background: var(--life-bg); color: var(--life-ink)"
+              >
+                03 — Food
+              </div>
+            </div>
+            <div class="card-content">
+              <div
+                class="flex items-center gap-2 eyebrow"
+                style="font-size: 11px"
+              >
+                <svg class="icon-sm">
+                  <path
+                    d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+                  />
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                </svg>
+                <span>Lifestyle</span>
+                <span
+                  style="
+                    height: 1px;
+                    width: 1.5rem;
+                    background-color: var(--color-soft-gold);
+                    margin: 0 0.25rem;
+                  "
+                ></span>
+                <span>6 min read</span>
+              </div>
+              <h3 class="card-title tracking-tight">
+                The morning protocol I actually keep
+              </h3>
+              <span
+                class="text-sm flex items-center gap-2 nav-link"
+                style="
+                  margin-top: 1.5rem;
+                  color: var(--life-ink);
+                  display: inline-flex;
+                "
+              >
+                Read entry
+                <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-in fade-up">
+      <div class="container">
+        <div class="eyebrow" style="margin-bottom: 1.5rem">As Featured In</div>
+        <div
+          class="featured-logos flex flex-wrap justify-center items-center gap-6"
+          style="column-gap: 3rem"
+        >
+          <span>Bon Appétit</span>
+          <span>Condé Nast Traveler</span>
+          <span>Kinfolk</span>
+          <span>NYT</span>
+          <span>Cereal</span>
+          <span>Goop</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="consulting-section" id="contact">
+      <div class="container fade-up">
+        <div class="consulting-box grid grid-cols-12 gap-8 items-center">
+          <div class="col-12 col-md-7">
+            <div
+              class="eyebrow flex items-center gap-2"
+              style="margin-bottom: 1rem; color: var(--color-soft-gold)"
+            >
+              <svg class="icon-sm">
+                <path
+                  d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"
+                />
+              </svg>
+              Work with Kimia
+            </div>
+            <h2
+              class="tracking-tight hero-title"
+              style="
+                font-size: clamp(34px, 4.5vw, 64px);
+                line-height: 1;
+                margin-bottom: 0;
+              "
+            >
+              brand Positioning,<br />brand storytelling,<br /><em
+                >creative direction.</em
+              >
+            </h2>
+            <p
+              class="leading-relaxed"
+              style="
+                margin-top: 2rem;
+                max-width: 28rem;
+                color: var(--color-soft-gold);
+              "
+            >
+              I partner with conscious brands and visionary founders to craft
+              authentic narratives that resonate. From content strategy to brand
+              collaborations, let's build something beautiful together.
+            </p>
+          </div>
+          <div class="col-12 col-md-4 col-md-start-9 flex flex-col gap-3">
+            <a href="#consulting" class="btn-light text-sm font-medium">
+              View services
+              <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+            </a>
+            <a href="#contact" class="btn-dark-outline text-sm font-medium">
+              Book a call
+              <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ig-section">
+      <div class="container fade-up">
+        <div
+          class="flex items-end justify-between"
+          style="margin-bottom: 2.5rem"
+        >
+          <div>
+            <div
+              class="eyebrow flex items-center gap-2"
+              style="margin-bottom: 1rem"
+            >
+              <svg class="icon-sm">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+              Latest on Instagram
+            </div>
+            <h2
+              class="tracking-tight hero-title"
+              style="
+                font-size: clamp(28px, 3.5vw, 44px);
+                line-height: 1;
+                margin-bottom: 0;
+              "
+            >
+              @kimiaskravings
+            </h2>
+          </div>
+          <a
+            href="#"
+            class="text-sm flex items-center gap-2 nav-link"
+            style="color: var(--color-gold)"
+          >
+            Follow <svg class="icon-sm"><path d="M7 17L17 7M7 7h10v10" /></svg>
+          </a>
+        </div>
+
+        <div class="ig-grid">
+          <a href="#" class="ig-item rounded-sm"
+            ><img
+              src="https://images.unsplash.com/photo-1653611540493-b3a896319fbf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
+              alt="IG 1"
+          /></a>
+          <a href="#" class="ig-item rounded-sm"
+            ><img
+              src="https://images.unsplash.com/photo-1672477179695-7276b0602fa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
+              alt="IG 2"
+          /></a>
+          <a href="#" class="ig-item rounded-sm"
+            ><img
+              src="https://images.unsplash.com/photo-1631054235886-c40c45b03f01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
+              alt="IG 3"
+          /></a>
+          <a href="#" class="ig-item rounded-sm"
+            ><img
+              src="https://images.unsplash.com/photo-1748540459503-19efc015143b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
+              alt="IG 4"
+          /></a>
+          <a href="#" class="ig-item rounded-sm"
+            ><img
+              src="https://images.unsplash.com/photo-1688234215821-268bccff69e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
+              alt="IG 5"
+          /></a>
+          <a href="#" class="ig-item rounded-sm"
+            ><img
+              src="https://images.unsplash.com/photo-1532636875304-0c89119d9b4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600"
+              alt="IG 6"
+          /></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-section">
+      <div class="container fade-up">
+        <div class="newsletter-box">
+          <svg
+            viewBox="0 0 800 300"
+            class="absolute w-full h-full"
+            style="top: 0; left: 0; opacity: 0.3; pointer-events: none"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,150 C200,80 400,220 600,140 C700,100 760,180 800,150"
+              stroke-width="1"
+              fill="none"
+            />
+            <path
+              d="M0,200 C220,140 420,260 620,180 C720,140 780,220 800,200"
+              stroke-width="1"
+              fill="none"
+            />
+          </svg>
+
+          <div class="grid grid-cols-12 gap-8 relative z-10 items-center">
+            <div class="col-12 col-md-7">
+              <div class="eyebrow" style="margin-bottom: 1rem"></div>
+              <h2
+                class="tracking-tight hero-title"
+                style="
+                  font-size: clamp(36px, 4.5vw, 64px);
+                  line-height: 1;
+                  margin-bottom: 0;
+                "
+              >
+                Let's Bring<br />Your Visions<br /><em class="text-muted"
+                  >To Life.</em
+                >
+              </h2>
+            </div>
+
+            <div class="col-12 col-md-5">
+              <form id="newsletter-form" class="w-full">
+                <div class="newsletter-input-group">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    class="newsletter-input"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    class="btn-primary"
+                    style="white-space: nowrap; font-weight: 500"
+                  >
+                    Contact Kimia
+                  </button>
+                </div>
+                <div
+                  class="eyebrow text-taupe"
+                  style="
+                    margin-top: 1rem;
+                    padding: 0 0.5rem;
+                    text-transform: none;
+                    letter-spacing: 0.05em;
+                  "
+                >
+                  Join 64,000 readers. Unsubscribe anytime.
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container fade-up">
+        <div class="footer-grid">
+          <div>
+            <a href="#" class="footer-logo">Kimia's Kravings</a>
+            <p
+              style="
+                color: var(--color-soft-taupe);
+                font-size: 14px;
+                max-width: 300px;
+                margin-top: 1rem;
+                line-height: 1.6;
+              "
+            >
+              A slow-living journal dedicated to recipes worth their weight,
+              itineraries built for breath, and rituals that make the ordinary
+              feel rare.
+            </p>
+          </div>
+
+          <div class="footer-links-group">
+            <h4>Explore</h4>
+            <div class="footer-links">
+              <a href="#recipes">Contact</a>
+              <a href="#guides">Travel Guides</a>
+              <a href="#lifestyle">Wellness & Lifestyle</a>
+              <a href="#about">Meet Kimia</a>
+              <a href="#contact">Consulting Services</a>
+            </div>
+          </div>
+
+          <div class="footer-links-group">
+            <h4>Connect</h4>
+            <div class="footer-links">
+              <a href="#">Instagram</a>
+              <a href="#">Pinterest</a>
+              <a href="#">Substack</a>
+              <a href="mailto:hello@kimiaskravings.com"
+                >hello@kimiaskravings.com</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>&copy; 2026 Kimia's Kravings. All rights reserved.</div>
+          <div style="display: flex; gap: 1.5rem">
+            <a href="#privacy" style="transition: color 0.3s">Privacy Policy</a>
+            <a href="#terms" style="transition: color 0.3s">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Newsletter Form Submission
+        const form = document.getElementById("newsletter-form");
+        if (form) {
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = form.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with: ${email}`);
+            form.reset();
+          });
+        }
+
+        // 2. Mobile Menu helper style
+        const style = document.createElement("style");
+        style.innerHTML = `
+        @media (min-width: 768px) {
+          .md-flex { display: flex !important; }
+        }
+      `;
+        document.head.appendChild(style);
+
+        // 3. Scroll Animation (Intersection Observer)
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target); // Only animate once
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".fade-up").forEach((element) => {
+          observer.observe(element);
+        });
+
+        // 4. Header Shadow on Scroll
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
