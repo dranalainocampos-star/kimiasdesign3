@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kimia's Kravings | Option 01 — Crimson & Champagne</title>
+    <title>Kimia's Kravings | Option 02 — Coral & Turquoise</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,18 +15,21 @@
     <style>
       /* --- OFFICIAL DIABLA COLOR SYSTEM & TYPOGRAPHY --- */
       :root {
-        /* Option 01 — Crimson & Champagne — distinct premium palette, orange-free */
-        --diabla-red: #911d10; /* hero / primary color blocks (Updated) */
-        --diabla-orange: #590f07; /* cursor accent / deep contrast (Updated) */
-        --diabla-anthracite: #1e1714; /* framing ink / borders / text */
+        /* Option 02 — Coral & Turquoise — vibrant two-tone pairing */
+        --diabla-red: #ef5340; /* CORAL RED — hero / primary color blocks */
+        --diabla-coral-deep: #c9382a; /* deeper coral for branded body text */
+        --diabla-turquoise: #15bec4; /* TURQUOISE — bold secondary */
+        --diabla-turquoise-deep: #0e9da3; /* deep turquoise for hovers */
+        --diabla-orange: #15bec4; /* cursor accent now reads turquoise */
+        --diabla-anthracite: #14242a; /* deep teal-charcoal framing ink */
         --diabla-white: #ffffff; /* panel base */
-        --diabla-light-grey: #f8f1e8; /* page background environment */
-        --diabla-border: #ebdfd0; /* fine dividers */
-        --diabla-muted: #8c7b6d; /* sub-text */
+        --diabla-light-grey: #f4f6f5; /* cool soft page background */
+        --diabla-border: #e2e6e5; /* fine dividers */
+        --diabla-muted: #6f7c7a; /* sub-text */
 
-        --diabla-sand-yellow: #c9a35e; /* category chip A */
-        --diabla-olive-green: #a3ad90; /* category chip B */
-        --diabla-dusky-pink: #e0b3a8; /* category chip C */
+        --diabla-sand-yellow: #f4b740; /* category chip A — warm gold pop */
+        --diabla-olive-green: #15bec4; /* category chip B — turquoise */
+        --diabla-dusky-pink: #ff8a78; /* category chip C — soft coral */
 
         --font-diabla:
           "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -223,7 +226,7 @@
           transform 0.2s ease;
       }
       .btn-primary:hover {
-        background-color: var(--diabla-anthracite);
+        background-color: var(--diabla-turquoise-deep);
       }
 
       .btn-outline {
@@ -237,7 +240,8 @@
         transition: all 0.2s ease;
       }
       .btn-outline:hover {
-        background-color: var(--diabla-anthracite);
+        background-color: var(--diabla-turquoise);
+        border-color: var(--diabla-turquoise);
         color: var(--diabla-white);
       }
 
@@ -347,11 +351,17 @@
       .stat-item:nth-child(2n) {
         border-right: none;
       }
+      .stat-item:nth-child(2n) .tracking-stark {
+        color: var(--diabla-turquoise-deep);
+      }
+      .stat-item:nth-child(odd) .tracking-stark {
+        color: var(--diabla-red);
+      }
 
       /* --- DYNAMIC MARQUEE CAROUSEL --- */
       .featured-in {
         border-bottom: 2px solid var(--diabla-anthracite);
-        background-color: var(--diabla-red);
+        background-color: var(--diabla-turquoise);
         color: var(--diabla-white);
         padding: 2.5rem 0;
         overflow: hidden;
@@ -518,7 +528,7 @@
         margin-bottom: 1.5rem;
       }
       .footer-logo span {
-        color: var(--diabla-red);
+        color: var(--diabla-turquoise);
       }
       .footer-links-group h4 {
         font-size: 11px;
@@ -541,10 +551,10 @@
         letter-spacing: 0.05em;
       }
       .footer-links a:hover {
-        color: var(--diabla-red);
+        color: var(--diabla-turquoise);
       }
       .footer-bottom {
-        border-top: 1px solid #222222;
+        border-top: 1px solid #2a3b41;
         padding-top: 2.5rem;
         display: flex;
         flex-direction: column;
@@ -729,7 +739,7 @@
             max-width: 32rem;
             margin-top: 1rem;
             font-size: 15px;
-            color: #911d10;
+            color: var(--diabla-coral-deep);
           "
         >
           A San Francisco-based lifestyle brand exploring the intersection of
@@ -880,7 +890,10 @@
           <h2 class="tracking-stark" style="font-size: 38px">
             Latest on the Blog
           </h2>
-          <a href="#all" class="nav-link" style="color: var(--diabla-red)"
+          <a
+            href="#all"
+            class="nav-link"
+            style="color: var(--diabla-turquoise-deep)"
             >View All &rarr;</a
           >
         </div>
@@ -936,7 +949,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-olive-green)"
+                style="
+                  background-color: var(--diabla-olive-green);
+                  color: var(--diabla-white);
+                "
                 >Lifestyle</span
               >
               <img
@@ -1005,7 +1021,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-olive-green)"
+                style="
+                  background-color: var(--diabla-olive-green);
+                  color: var(--diabla-white);
+                "
                 >Escapes</span
               >
               <img
@@ -1101,7 +1120,7 @@
         </div>
         <div class="footer-bottom">
           <div>
-            &copy; 2026 Kimia's Kravings. Option 01 — Crimson & Champagne.
+            &copy; 2026 Kimia's Kravings. Option 02 — Coral & Turquoise.
           </div>
           <div>All Rights Reserved.</div>
         </div>

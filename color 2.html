@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kimia's Kravings | Option 03 — Emerald & Coral</title>
+    <title>Kimia's Kravings | Option 06 — Earthen Editorial</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,18 +15,30 @@
     <style>
       /* --- OFFICIAL DIABLA COLOR SYSTEM & TYPOGRAPHY --- */
       :root {
-        /* Option 03 — Emerald & Coral — distinct premium palette, orange-free */
-        --diabla-red: #1f5c4c; /* hero / primary color blocks */
-        --diabla-orange: #123d32; /* cursor accent (deep, never orange) */
-        --diabla-anthracite: #16201b; /* framing ink / borders / text */
-        --diabla-white: #ffffff; /* panel base */
-        --diabla-light-grey: #eef0e6; /* page background environment */
-        --diabla-border: #dbe0d0; /* fine dividers */
-        --diabla-muted: #71807a; /* sub-text */
+        /* Option 06 — Earthen Editorial — a curated 3-accent palette.
+           Three muted, harmonious tones (terracotta · petrol teal · ochre)
+           over a warm cream/ink base. Type plays too: a terracotta-tipped
+           headline and pull-quote, petrol-teal stat figures. */
+        --diabla-red: #b9543a; /* PRIMARY ACCENT — refined terracotta */
+        --diabla-orange: #b9543a; /* cursor accent — terracotta */
+        --diabla-anthracite: #211d18; /* warm near-black ink / borders */
+        --diabla-white: #ffffff; /* crisp panel base */
+        --diabla-light-grey: #f6f1e8; /* warm cream page background */
+        --diabla-border: #e6ddce; /* fine dividers */
+        --diabla-muted: #8c8475; /* sub-text */
 
-        --diabla-sand-yellow: #c79f55; /* category chip A */
-        --diabla-olive-green: #df6e5a; /* category chip B */
-        --diabla-dusky-pink: #e3b3a6; /* category chip C */
+        /* The three earthy accents + neutral tone */
+        --c-sand: #efe7d8; /* soft tonal panel (stats band) */
+        --c-ink: #1c1813; /* deep ink (structure) */
+        --c-terracotta: #b9543a; /* accent 1 — warm anchor */
+        --c-teal: #21534b; /* accent 2 — cool counterpoint */
+        --c-teal-deep: #17302a; /* deeper teal for the footer */
+        --c-ochre: #c0892a; /* accent 3 — warm gold */
+
+        /* Category chips share accent 3 (ochre), unified — no rainbow */
+        --diabla-sand-yellow: #c0892a;
+        --diabla-olive-green: #c0892a;
+        --diabla-dusky-pink: #c0892a;
 
         --font-diabla:
           "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -322,7 +334,7 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        background: var(--diabla-red);
+        background: var(--c-teal);
         color: var(--diabla-white);
         padding: 1.25rem 1.75rem;
         border-top: 2px solid var(--diabla-anthracite);
@@ -332,7 +344,7 @@
       /* POST-HERO MONOLITHIC STATS GRID */
       .stats-block-row {
         border-bottom: 2px solid var(--diabla-anthracite);
-        background: var(--diabla-white);
+        background: var(--c-sand);
       }
       .stats-grid {
         display: grid;
@@ -351,7 +363,7 @@
       /* --- DYNAMIC MARQUEE CAROUSEL --- */
       .featured-in {
         border-bottom: 2px solid var(--diabla-anthracite);
-        background-color: var(--diabla-red);
+        background-color: var(--c-teal);
         color: var(--diabla-white);
         padding: 2.5rem 0;
         overflow: hidden;
@@ -472,7 +484,7 @@
         border-bottom: 2px solid var(--diabla-anthracite);
       }
       .consulting-box {
-        background-color: var(--diabla-red);
+        background-color: var(--c-terracotta);
         color: var(--diabla-white);
         padding: 4.5rem;
         border: 2px solid var(--diabla-anthracite);
@@ -500,7 +512,7 @@
 
       /* --- MONOCHROMATIC FOOTER MATRIX --- */
       .footer {
-        background-color: var(--diabla-anthracite);
+        background-color: var(--c-teal-deep);
         color: var(--diabla-white);
         padding: 7rem 0 3.5rem;
       }
@@ -720,8 +732,10 @@
           <span class="diabla-eyebrow">FOOD * TRAVEL * LIFE * BRAND</span>
         </div>
         <h1 class="hero-title tracking-stark leading-tight">
-          Your ultimate<br />go-to Guide for<br />where to Eat,<br />Drink &
-          Live
+          Your ultimate<br />go-to Guide for<br />where to
+          <span style="color: var(--diabla-red)"
+            >Eat,<br />Drink &amp; Live</span
+          >
         </h1>
         <p
           class="text-muted"
@@ -729,7 +743,7 @@
             max-width: 32rem;
             margin-top: 1rem;
             font-size: 15px;
-            color: #1f5c4c;
+            color: #574f48;
           "
         >
           A San Francisco-based lifestyle brand exploring the intersection of
@@ -783,7 +797,10 @@
       <div class="container">
         <div class="stats-grid fade-up delay-200">
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-teal)"
+            >
               76K+
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">
@@ -791,13 +808,19 @@
             </div>
           </div>
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-teal)"
+            >
               38
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">Cities</div>
           </div>
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-teal)"
+            >
               1.2M
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">
@@ -805,7 +828,10 @@
             </div>
           </div>
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-teal)"
+            >
               12
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">
@@ -845,7 +871,10 @@
           <div class="diabla-eyebrow" style="margin-bottom: 1rem">
             About Kimia
           </div>
-          <h2 class="about-quote tracking-stark leading-tight">
+          <h2
+            class="about-quote tracking-stark leading-tight"
+            style="color: var(--diabla-red)"
+          >
             "I believe in the art of slow living—in savoring every single
             experience"
           </h2>
@@ -878,9 +907,9 @@
           style="margin-bottom: 4rem"
         >
           <h2 class="tracking-stark" style="font-size: 38px">
-            Latest on the Blog
+            Latest on the <span style="color: var(--diabla-red)">Blog</span>
           </h2>
-          <a href="#all" class="nav-link" style="color: var(--diabla-red)"
+          <a href="#all" class="nav-link" style="color: var(--c-ochre)"
             >View All &rarr;</a
           >
         </div>
@@ -890,7 +919,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-sand-yellow)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Food</span
               >
               <img
@@ -913,7 +945,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-dusky-pink)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Travel</span
               >
               <img
@@ -936,7 +971,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-olive-green)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Lifestyle</span
               >
               <img
@@ -959,7 +997,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-dusky-pink)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Drinks</span
               >
               <img
@@ -982,7 +1023,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-sand-yellow)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Culture</span
               >
               <img
@@ -1005,7 +1049,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-olive-green)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Escapes</span
               >
               <img
@@ -1031,7 +1078,7 @@
       <div class="container">
         <div class="consulting-box grid grid-cols-12 gap-8 items-center">
           <div class="col-12 col-md-7">
-            <span class="diabla-eyebrow" style="color: var(--diabla-anthracite)"
+            <span class="diabla-eyebrow" style="color: var(--diabla-light-grey)"
               >Brand Strategy</span
             >
             <h2
@@ -1100,7 +1147,9 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <div>&copy; 2026 Kimia's Kravings. Option 03 — Emerald & Coral.</div>
+          <div>
+            &copy; 2026 Kimia's Kravings. Option 06 — Earthen Editorial.
+          </div>
           <div>All Rights Reserved.</div>
         </div>
       </div>

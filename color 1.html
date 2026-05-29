@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kimia's Kravings | Option 02 — Aubergine & Blush</title>
+    <title>Kimia's Kravings | Option 10 — Sultry Sapphire</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,18 +15,31 @@
     <style>
       /* --- OFFICIAL DIABLA COLOR SYSTEM & TYPOGRAPHY --- */
       :root {
-        /* Option 02 — Aubergine & Blush — distinct premium palette, orange-free */
-        --diabla-red: #6e3551; /* hero / primary color blocks */
-        --diabla-orange: #4d2239; /* cursor accent (deep, never orange) */
-        --diabla-anthracite: #1a1318; /* framing ink / borders / text */
-        --diabla-white: #ffffff; /* panel base */
-        --diabla-light-grey: #f1eaee; /* page background environment */
-        --diabla-border: #e2d5dc; /* fine dividers */
-        --diabla-muted: #82737c; /* sub-text */
+        /* Option 10 — Sultry Sapphire — a sexy, opulent 3-color palette.
+           Bordeaux wine · midnight sapphire · champagne brass, over warm
+           blush paper and espresso ink. Type plays too: a wine-tipped
+           headline and pull-quote, sapphire stat figures. */
+        --diabla-red: #7e2438; /* ACCENT 1 — bordeaux wine */
+        --diabla-orange: #7e2438; /* cursor accent — wine */
+        --diabla-anthracite: #231619; /* warm espresso ink / borders */
+        --diabla-white: #ffffff; /* crisp panel base */
+        --diabla-light-grey: #f6ece7; /* warm blush-paper background */
+        --diabla-border: #e7d5ce; /* fine dividers */
+        --diabla-muted: #9a8077; /* sub-text */
 
-        --diabla-sand-yellow: #c6a667; /* category chip A */
-        --diabla-olive-green: #9aa595; /* category chip B */
-        --diabla-dusky-pink: #d98a78; /* category chip C */
+        /* The sultry sapphire trio + tones */
+        --c-sand: #f0d9d2; /* soft blush panel (stats band) */
+        --c-ink: #231619; /* espresso (structure) */
+        --c-terracotta: #7e2438; /* accent 1 — wine (CTA / consulting) */
+        --c-teal: #1a335c; /* accent 2 — midnight sapphire (marquee/badge) */
+        --c-teal-deep: #102139; /* deeper sapphire for the footer */
+        --c-ochre: #7e2438; /* link accent — wine (view all) */
+        --c-sapphire-type: #24426f; /* readable sapphire for typography */
+
+        /* Category chips — champagne brass, unified luxe tags (accent 3) */
+        --diabla-sand-yellow: #c2a14d;
+        --diabla-olive-green: #c2a14d;
+        --diabla-dusky-pink: #c2a14d;
 
         --font-diabla:
           "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -322,7 +335,7 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        background: var(--diabla-red);
+        background: var(--c-teal);
         color: var(--diabla-white);
         padding: 1.25rem 1.75rem;
         border-top: 2px solid var(--diabla-anthracite);
@@ -332,7 +345,7 @@
       /* POST-HERO MONOLITHIC STATS GRID */
       .stats-block-row {
         border-bottom: 2px solid var(--diabla-anthracite);
-        background: var(--diabla-white);
+        background: var(--c-sand);
       }
       .stats-grid {
         display: grid;
@@ -351,7 +364,7 @@
       /* --- DYNAMIC MARQUEE CAROUSEL --- */
       .featured-in {
         border-bottom: 2px solid var(--diabla-anthracite);
-        background-color: var(--diabla-red);
+        background-color: var(--c-teal);
         color: var(--diabla-white);
         padding: 2.5rem 0;
         overflow: hidden;
@@ -472,7 +485,7 @@
         border-bottom: 2px solid var(--diabla-anthracite);
       }
       .consulting-box {
-        background-color: var(--diabla-red);
+        background-color: var(--c-terracotta);
         color: var(--diabla-white);
         padding: 4.5rem;
         border: 2px solid var(--diabla-anthracite);
@@ -500,7 +513,7 @@
 
       /* --- MONOCHROMATIC FOOTER MATRIX --- */
       .footer {
-        background-color: var(--diabla-anthracite);
+        background-color: var(--c-teal-deep);
         color: var(--diabla-white);
         padding: 7rem 0 3.5rem;
       }
@@ -720,8 +733,10 @@
           <span class="diabla-eyebrow">FOOD * TRAVEL * LIFE * BRAND</span>
         </div>
         <h1 class="hero-title tracking-stark leading-tight">
-          Your ultimate<br />go-to Guide for<br />where to Eat,<br />Drink &
-          Live
+          Your ultimate<br />go-to Guide for<br />where to
+          <span style="color: var(--diabla-red)"
+            >Eat,<br />Drink &amp; Live</span
+          >
         </h1>
         <p
           class="text-muted"
@@ -729,7 +744,7 @@
             max-width: 32rem;
             margin-top: 1rem;
             font-size: 15px;
-            color: #6e3551;
+            color: #574f48;
           "
         >
           A San Francisco-based lifestyle brand exploring the intersection of
@@ -783,7 +798,10 @@
       <div class="container">
         <div class="stats-grid fade-up delay-200">
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-sapphire-type)"
+            >
               76K+
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">
@@ -791,13 +809,19 @@
             </div>
           </div>
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-sapphire-type)"
+            >
               38
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">Cities</div>
           </div>
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-sapphire-type)"
+            >
               1.2M
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">
@@ -805,7 +829,10 @@
             </div>
           </div>
           <div class="stat-item">
-            <div class="tracking-stark leading-tight" style="font-size: 52px">
+            <div
+              class="tracking-stark leading-tight"
+              style="font-size: 52px; color: var(--c-sapphire-type)"
+            >
               12
             </div>
             <div class="diabla-eyebrow" style="margin-top: 0.75rem">
@@ -845,7 +872,10 @@
           <div class="diabla-eyebrow" style="margin-bottom: 1rem">
             About Kimia
           </div>
-          <h2 class="about-quote tracking-stark leading-tight">
+          <h2
+            class="about-quote tracking-stark leading-tight"
+            style="color: var(--diabla-red)"
+          >
             "I believe in the art of slow living—in savoring every single
             experience"
           </h2>
@@ -880,7 +910,7 @@
           <h2 class="tracking-stark" style="font-size: 38px">
             Latest on the Blog
           </h2>
-          <a href="#all" class="nav-link" style="color: var(--diabla-red)"
+          <a href="#all" class="nav-link" style="color: var(--c-ochre)"
             >View All &rarr;</a
           >
         </div>
@@ -890,7 +920,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-sand-yellow)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Food</span
               >
               <img
@@ -913,7 +946,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-dusky-pink)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Travel</span
               >
               <img
@@ -936,7 +972,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-olive-green)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Lifestyle</span
               >
               <img
@@ -959,7 +998,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-dusky-pink)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Drinks</span
               >
               <img
@@ -982,7 +1024,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-sand-yellow)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Culture</span
               >
               <img
@@ -1005,7 +1050,10 @@
             <div class="card-img-container">
               <span
                 class="card-label"
-                style="background-color: var(--diabla-olive-green)"
+                style="
+                  background-color: var(--c-ochre);
+                  color: var(--diabla-anthracite);
+                "
                 >Escapes</span
               >
               <img
@@ -1031,7 +1079,7 @@
       <div class="container">
         <div class="consulting-box grid grid-cols-12 gap-8 items-center">
           <div class="col-12 col-md-7">
-            <span class="diabla-eyebrow" style="color: var(--diabla-anthracite)"
+            <span class="diabla-eyebrow" style="color: var(--diabla-light-grey)"
               >Brand Strategy</span
             >
             <h2
@@ -1100,9 +1148,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <div>
-            &copy; 2026 Kimia's Kravings. Option 02 — Aubergine & Blush.
-          </div>
+          <div>&copy; 2026 Kimia's Kravings. Option 10 — Sultry Sapphire.</div>
           <div>All Rights Reserved.</div>
         </div>
       </div>
